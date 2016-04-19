@@ -1,1 +1,95 @@
-Hello
+<!DOCTYPE html>
+<html class="noIE" lang="en-US">
+	<head>
+	</head>
+	<body>
+		<p id="content">
+			hello<br>
+		</p>
+		<script>
+			// average car
+			var cd = 0.325;	// average coefficient of drag of cars (0.30-0.35)
+            /* note: the above probably does not factor trucks into it
+            * triangle is probably least efficient
+            * trucks only make up 4.3% of traffic, though, so don't worry
+            * http://www.facethefactsusa.org/facts/get-numbers-truck
+            */
+			var rho = 1.2041; // mass density of air at 20degC (source: https://en.wikipedia.org/wiki/Density_of_air)
+			// how much is a given car pushing?
+
+			// u = sqrt(2*Fd/(rho*cd*A))
+
+			// weighted lane distribution
+			            // http://www.victorknoop.eu/research/papers/ieee_itsc_2010.pdf
+			            // estimate from 0-125 vehicles/km
+			var dl = [];	// distribution cars in left lane
+			var dm = [];    // distribution cars in middle lane
+			var dr = [];    // distribution cars in right lane
+
+			dl[5] = 0;
+			dl[15]= 0.13;
+			dl[25]= 0.24;
+			dl[35]= 0.32;
+			dl[45]= 0.40;
+
+			dl[55]= 0.43;
+			dl[65]= 0.44;
+			dl[75]= 0.42;
+			dl[85]= 0.40;
+			dl[95]= 0.38;
+
+			dl[105]=0.38;
+			dl[115]=0.38;
+			dl[125]=0.38;
+			dl[135]=0.36;
+
+			dm[5] = 0.25;
+			dm[15]= 0.45;
+			dm[25]= 0.46;
+			dm[35]= 0.44;
+			dm[45]= 0.39;
+
+			dm[55]= 0.37;
+			dm[65]= 0.36;
+			dm[75]= 0.37;
+			dm[85]= 0.37;
+			dm[95]= 0.37;
+
+			dm[105]=0.36;
+			dm[115]=0.35;
+			dm[125]=0.37;
+			dm[135]=0.36;
+
+			dr[5] = 0.75;
+			dr[15]= 0.42;
+			dr[25]= 0.30;
+			dr[35]= 0.24;
+			dr[45]= 0.21;
+
+			dr[55]= 0.20
+			dr[65]= 0.20;
+			dr[75]= 0.21;
+			dr[85]= 0.23;
+			dr[95]= 0.25;
+
+			dr[105]=0.26;
+			dr[115]=0.27;
+			dr[125]=0.25;
+			dr[135]=0.28;
+
+			for (var i = 5; i<=135; i=i+10)
+			{
+				document.getElementById("content").innerHTML += i + ": left-" + dl[i] + ", middle-" + dm[i] + ", right-" + dr[i] + ", sum-" + (dl[i] + dm[i] + dr[i]) + "<br></br>";
+			}
+
+			var r = 1;	// distance from car (m)
+			
+			//http://www.engineeringtoolbox.com/drag-coefficient-d_627.html
+			/* 217.5 kg*m/s^2 / 1.2 kg/m^3
+			* = 181 m^4/s^2 / 2 m^2 	<-- area of front of car
+			* = 91 m^2/s^2 / 3m		<-- length of car
+			* = 30 m/s^2
+			*/
+		</script>
+	</body>
+</html>
